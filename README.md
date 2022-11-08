@@ -64,7 +64,8 @@ l3_cas_guard:
     handleLogoutRequest: true                           # Single sign out activation (default: false)
     casLogoutTarget: https://ent-test.univ-lille3.fr    # Redirect path after logout
     force: true                                         # Allows cas check mode and not force, user : __NO_USER__ if not connected (If force false, Single sign out cant work).
-    gateway: true					# Gateway mode (for use the mode gateway of the Cas Server) set to false if you use micro-services or apis rest.
+    gateway: true                                       # Gateway mode (for use the mode gateway of the Cas Server) set to false if you use micro-services or apis rest.
+    proxy:                                              # Set the proxy to use for the upcoming curl request
 ```
 
 For Symfony4 and Symfony5 and Symfony 6, add the variables in your config file (.env and .env.dist) :
@@ -79,7 +80,8 @@ CAS_HANDLE_LOGOUT_REQUEST=true       # Single sign out activation (default: fals
 CAS_LOGIN_TARGET=https://server.univ-lille3.fr # Redirect path after login (when use anonymous mode)
 CAS_LOGOUT_TARGET=https://ent-test.univ-lille3.fr    # Redirect path after logout
 CAS_FORCE=true                       # Allows cas check mode and not force, user : __NO_USER__ if not connected (If force false, Single sign out cant work).
-CAS_GATEWAY=true		     # Gateway mode (for use the mode gateway of the Cas Server) set to false if you use micro-services or apis rest.
+CAS_GATEWAY=true                     # Gateway mode (for use the mode gateway of the Cas Server) set to false if you use micro-services or apis rest.
+PROXY=                               # Set the proxy to use for the upcoming curl request
 ###< l3/cas-guard-bundle ###
 ...
 ```
@@ -94,6 +96,7 @@ parameters:
     cas_port: '%env(int:CAS_PORT)%'
     cas_path: '%env(string:CAS_PATH)%'
     cas_gateway: '%env(bool:CAS_GATEWAY)%'
+    proxy: '%env(string:PROXY)%'
 
 l3_cas_guard:
     host: '%env(string:CAS_HOST)%'
@@ -104,6 +107,7 @@ l3_cas_guard:
     casLogoutTarget: '%env(string:CAS_LOGOUT_TARGET)%'
     force: '%env(bool:CAS_FORCE)%'
     gateway: '%env(bool:CAS_GATEWAY)%'
+    proxy: '%env(string:PROXY)%'
 ...
 ```
 
