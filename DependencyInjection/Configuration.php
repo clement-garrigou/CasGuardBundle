@@ -29,6 +29,7 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('casLogoutTarget')->defaultNull()->end()
             ->booleanNode('force')->defaultValue(true)->end()
             ->booleanNode('gateway')->defaultValue(true)->end()
+            ->scalarNode('proxy')->defaultValue('')->end()
             ->end();
 
         return $treeBuilder;

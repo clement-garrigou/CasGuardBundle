@@ -55,6 +55,10 @@ class CasAuthenticator extends AbstractAuthenticator {
 
         \phpCAS::client(CAS_VERSION_2_0, $this->getParameter('host'), $this->getParameter('port'), is_null($this->getParameter('path')) ? '' : $this->getParameter('path'), true);
 
+        if($this->getParameter('proxy')) {
+            \phpCAS::setExtraCurlOption(CURLOPT_PROXY,$this->getParameter('proxy'));
+        }
+
         if(is_bool($this->getParameter('ca')) && $this->getParameter('ca') == false) {
             \phpCAS::setNoCasServerValidation();
         } else {
